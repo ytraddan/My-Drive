@@ -3,7 +3,7 @@
 import { Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function UploadButton() {
+export default function UploadButton() {
   const handleUpload = (): void => {
     // This would be replaced with actual upload functionality
     alert("Upload functionality would be implemented here");

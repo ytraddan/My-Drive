@@ -1,19 +1,18 @@
-/* eslint-disable jsx-a11y/alt-text */
 import {
   Clock,
   Computer,
   FileText,
   HardDrive,
-  Image,
+  Image as ImageIcon,
   Share2,
   Star,
   Trash2,
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { UploadButton } from "@/components/upload-button";
+import UploadButton from "./upload-button";
 
-export function Sidebar() {
+export default function Sidebar() {
   return (
     <div className="hidden w-64 border-r border-border p-4 md:block">
       <div className="space-y-6">
@@ -64,7 +63,7 @@ export function Sidebar() {
           </h3>
           <Button variant="ghost" className="w-full justify-start" asChild>
             <a href="#">
-              <Image className="mr-2 h-4 w-4" />
+              <ImageIcon className="mr-2 h-4 w-4" />
               Images
             </a>
           </Button>
