@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import {
   ChevronRight,
@@ -12,35 +12,31 @@ import {
   Star,
   Share2,
 } from "lucide-react";
-import { Button } from "~/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "~/components/ui/breadcrumb";
-import { mockData } from "~/lib/mock";
+} from "@/components/ui/breadcrumb";
+import { mockData } from "@/lib/mock";
 
-interface BreadcrumbPathItem {
-  id: string;
-  name: string;
-}
 
 export default function FileExplorer() {
-  const [currentFolder, setCurrentFolder] = useState<string>("root");
+  const [currentFolder, setCurrentFolder] = useState("root");
   const router = useRouter();
   const pathname = usePathname();
 
   // Get the path from root to current folder
-  const getBreadcrumbPath = (id: string): BreadcrumbPathItem[] => {
-    const path: BreadcrumbPathItem[] = [];
+  const getBreadcrumbPath = (id: string) => {
+    const path = [];
     let current: string | undefined = id;
 
     while (current) {
@@ -62,19 +58,17 @@ export default function FileExplorer() {
       ? mockData[currentFolder].children
       : [];
 
-  // Handle folder click
-  const handleFolderClick = (id: string): void => {
+  const handleFolderClick = (id: string) => {
     setCurrentFolder(id);
   };
 
-  // Handle file click
-  const handleFileClick = (id: string): void => {
+  const handleFileClick = (id: string) => {
     // In a real app, this would open the file or download it
     alert(`Opening file: ${mockData[id]?.name}`);
   };
 
   // Get icon for file based on extension
-  const getFileIcon = (filename: string): ReactNode => {
+  const getFileIcon = (filename: string) => {
     const extension = filename.split(".").pop()?.toLowerCase();
 
     switch (extension) {
@@ -135,7 +129,11 @@ export default function FileExplorer() {
         {folderContents.map((id) => {
           const item = mockData[id];
 
-          if (item?.type === "folder") {
+          if (!item) {
+            return null;
+          }
+
+          if (item.type === "folder") {
             return (
               <div
                 key={id}
@@ -170,7 +168,7 @@ export default function FileExplorer() {
               </div>
             );
           } else {
-            const fileItem = item!;
+            const fileItem = item;
             return (
               <div
                 key={id}

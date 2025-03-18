@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import {
   Clock,
   Computer,
@@ -9,8 +10,8 @@ import {
   Trash2,
   Users,
 } from "lucide-react";
-import { Button } from "~/components/ui/button";
-import { UploadButton } from "~/components/upload-button";
+import { Button } from "@/components/ui/button";
+import { UploadButton } from "@/components/upload-button";
 
 export function Sidebar() {
   return (

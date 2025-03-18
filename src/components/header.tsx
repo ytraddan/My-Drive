@@ -1,6 +1,6 @@
 import { Search } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
-import { Input } from "~/components/ui/input"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Input } from "@/components/ui/input"
 
 export function Header() {
   return (
