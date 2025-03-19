@@ -15,11 +15,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { files as filesT } from "@/server/db/schema";
+import type { files_table } from "@/server/db/schema";
 
 import Link from "next/link";
 
-export default function File({ file }: { file: typeof filesT.$inferSelect }) {
+export default function File({ file }: { file: typeof files_table.$inferSelect }) {
   const getFileIcon = (filename: string) => {
     const extension = filename.split(".").pop()?.toLowerCase();
 

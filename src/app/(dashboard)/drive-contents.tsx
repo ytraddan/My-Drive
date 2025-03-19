@@ -1,16 +1,16 @@
 import File from "./components/file";
 import Folder from "./components/folder";
 import Breadcrumbs from "./components/breadcrumbs";
-import type { files as filesT, folders as foldersT } from "@/server/db/schema";
+import type { files_table, folders_table } from "@/server/db/schema";
 
 export default function DriveContents({
   files,
   folders,
   parents,
 }: {
-  files: (typeof filesT.$inferSelect)[];
-  folders: (typeof foldersT.$inferSelect)[];
-  parents: (typeof foldersT.$inferSelect)[];
+  files: (typeof files_table.$inferSelect)[];
+  folders: (typeof folders_table.$inferSelect)[];
+  parents: (typeof folders_table.$inferSelect)[];
 }) {
   const Folders = () =>
     folders.map((folder) => <Folder key={folder.id} folder={folder} />);

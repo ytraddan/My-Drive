@@ -6,12 +6,12 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import type { folders } from "@/server/db/schema";
+import type { folders_table } from "@/server/db/schema";
 
 export default function Breadcrumbs({
   parents,
 }: {
-  parents: (typeof folders.$inferSelect)[];
+  parents: (typeof folders_table.$inferSelect)[];
 }) {
   return (
     <Breadcrumb>

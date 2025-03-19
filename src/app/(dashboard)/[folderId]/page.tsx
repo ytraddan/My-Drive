@@ -1,6 +1,6 @@
 import {
-  files as filesSchema,
-  folders as foldersSchema,
+  files_table ,
+  folders_table ,
 } from "@/server/db/schema";
 import { db } from "@/server/db";
 import DriveContents from ".././drive-contents";
@@ -13,8 +13,8 @@ async function getAllParents(folderId: number) {
   while (currentId !== null) {
     const folder = await db
       .selectDistinct()
-      .from(foldersSchema)
-      .where(eq(foldersSchema.id, currentId));
+      .from(folders_table)
+      .where(eq(folders_table.id, currentId));
 
     if (!folder[0]) {
       throw new Error("Parent folder not found");
@@ -39,13 +39,13 @@ export default async function MyDrive(props: {
 
   const foldersPromise = db
     .select()
-    .from(foldersSchema)
-    .where(eq(foldersSchema.parent, parsedFolderId));
+    .from(folders_table)
+    .where(eq(folders_table.parent, parsedFolderId));
 
   const filesPromise = db
     .select()
-    .from(filesSchema)
-    .where(eq(filesSchema.parent, parsedFolderId));
+    .from(files_table)
+    .where(eq(files_table.parent, parsedFolderId));
 
   const parentsPromise = getAllParents(parsedFolderId);
 
