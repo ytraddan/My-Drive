@@ -4,14 +4,14 @@ import { env } from "@/env";
 
 export default {
   schema: "./src/server/db/schema.ts",
-  dialect: 'singlestore',
+  dialect: "singlestore",
+  tablesFilter: ["my-drive_*"],
   dbCredentials: {
     host: env.DB_HOST,
     port: parseInt(env.DB_PORT),
     user: env.DB_USER,
     password: env.DB_PASS,
     database: env.DB_NAME,
-    ssl: {}
+    ssl: {},
   },
-  tablesFilter: ["drive_*"],
 } satisfies Config;

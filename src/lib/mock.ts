@@ -5,7 +5,7 @@ export type File = {
   url: string;
   size: string;
   parent: string;
-  modified: string;
+  last_modified: string;
 };
 
 export type Folder = {
@@ -80,7 +80,7 @@ export const mockFiles: File[] = [
     url: "/files/file1.txt",
     size: "12 KB",
     parent: "root",
-    modified: "2024-03-15T10:30:00Z",
+    last_modified: "2024-03-15T10:30:00Z",
   },
   {
     id: "10",
@@ -89,7 +89,7 @@ export const mockFiles: File[] = [
     url: "/files/presentation.pptx",
     size: "2.4 MB",
     parent: "root",
-    modified: "2024-03-14T15:45:00Z",
+    last_modified: "2024-03-14T15:45:00Z",
   },
   {
     id: "11",
@@ -98,7 +98,7 @@ export const mockFiles: File[] = [
     url: "/files/resume.pdf",
     size: "450 KB",
     parent: "1",
-    modified: "2024-03-10T09:20:00Z",
+    last_modified: "2024-03-10T09:20:00Z",
   },
   {
     id: "12",
@@ -107,7 +107,7 @@ export const mockFiles: File[] = [
     url: "/files/notes.docx",
     size: "35 KB",
     parent: "1",
-    modified: "2024-03-13T11:15:00Z",
+    last_modified: "2024-03-13T11:15:00Z",
   },
   {
     id: "13",
@@ -116,7 +116,7 @@ export const mockFiles: File[] = [
     url: "/files/report.docx",
     size: "1.2 MB",
     parent: "2",
-    modified: "2024-03-12T16:30:00Z",
+    last_modified: "2024-03-12T16:30:00Z",
   },
   {
     id: "14",
@@ -125,7 +125,7 @@ export const mockFiles: File[] = [
     url: "/files/data.xlsx",
     size: "890 KB",
     parent: "2",
-    modified: "2024-03-11T14:25:00Z",
+    last_modified: "2024-03-11T14:25:00Z",
   },
   {
     id: "15",
@@ -134,7 +134,7 @@ export const mockFiles: File[] = [
     url: "/files/budget.xlsx",
     size: "120 KB",
     parent: "3",
-    modified: "2024-03-09T13:40:00Z",
+    last_modified: "2024-03-09T13:40:00Z",
   },
   {
     id: "16",
@@ -143,7 +143,7 @@ export const mockFiles: File[] = [
     url: "/files/journal.txt",
     size: "45 KB",
     parent: "3",
-    modified: "2024-03-15T08:55:00Z",
+    last_modified: "2024-03-15T08:55:00Z",
   },
   {
     id: "17",
@@ -152,7 +152,7 @@ export const mockFiles: File[] = [
     url: "/files/profile.jpg",
     size: "1.8 MB",
     parent: "4",
-    modified: "2024-03-08T17:10:00Z",
+    last_modified: "2024-03-08T17:10:00Z",
   },
   {
     id: "18",
@@ -161,7 +161,7 @@ export const mockFiles: File[] = [
     url: "/files/screenshot.png",
     size: "950 KB",
     parent: "4",
-    modified: "2024-03-14T12:05:00Z",
+    last_modified: "2024-03-14T12:05:00Z",
   },
   {
     id: "19",
@@ -170,7 +170,7 @@ export const mockFiles: File[] = [
     url: "/files/beach.jpg",
     size: "3.2 MB",
     parent: "5",
-    modified: "2024-03-07T10:15:00Z",
+    last_modified: "2024-03-07T10:15:00Z",
   },
   {
     id: "20",
@@ -179,7 +179,7 @@ export const mockFiles: File[] = [
     url: "/files/mountain.jpg",
     size: "2.8 MB",
     parent: "5",
-    modified: "2024-03-07T10:20:00Z",
+    last_modified: "2024-03-07T10:20:00Z",
   },
   {
     id: "21",
@@ -188,7 +188,7 @@ export const mockFiles: File[] = [
     url: "/files/sunset.jpg",
     size: "2.1 MB",
     parent: "5",
-    modified: "2024-03-07T10:25:00Z",
+    last_modified: "2024-03-07T10:25:00Z",
   },
   {
     id: "22",
@@ -197,7 +197,7 @@ export const mockFiles: File[] = [
     url: "/files/project-plan.pdf",
     size: "1.5 MB",
     parent: "6",
-    modified: "2024-03-13T09:30:00Z",
+    last_modified: "2024-03-13T09:30:00Z",
   },
   {
     id: "23",
@@ -206,7 +206,7 @@ export const mockFiles: File[] = [
     url: "/files/index.html",
     size: "15 KB",
     parent: "7",
-    modified: "2024-03-15T15:40:00Z",
+    last_modified: "2024-03-15T15:40:00Z",
   },
   {
     id: "24",
@@ -215,7 +215,7 @@ export const mockFiles: File[] = [
     url: "/files/styles.css",
     size: "8 KB",
     parent: "7",
-    modified: "2024-03-15T15:45:00Z",
+    last_modified: "2024-03-15T15:45:00Z",
   },
   {
     id: "25",
@@ -224,7 +224,7 @@ export const mockFiles: File[] = [
     url: "/files/script.js",
     size: "12 KB",
     parent: "7",
-    modified: "2024-03-15T16:00:00Z",
+    last_modified: "2024-03-15T16:00:00Z",
   },
   {
     id: "26",
@@ -233,7 +233,7 @@ export const mockFiles: File[] = [
     url: "/files/main.js",
     size: "25 KB",
     parent: "8",
-    modified: "2024-03-14T13:20:00Z",
+    last_modified: "2024-03-14T13:20:00Z",
   },
   {
     id: "27",
@@ -242,6 +242,6 @@ export const mockFiles: File[] = [
     url: "/files/config.json",
     size: "3 KB",
     parent: "8",
-    modified: "2024-03-14T13:25:00Z",
+    last_modified: "2024-03-14T13:25:00Z",
   },
 ];
