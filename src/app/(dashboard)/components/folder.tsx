@@ -1,3 +1,5 @@
+"use client";
+
 import { Folder as FolderIcon, MoreVertical, Star, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,7 +36,7 @@ export default function Folder({
             <span className="sr-only">More</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
           <DropdownMenuItem>
             <Star className="mr-2 h-4 w-4" />
             <span>Star</span>

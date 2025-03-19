@@ -6,34 +6,20 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { mockFolders } from "@/lib/mock";
-import { useMemo } from "react";
+import type { folders } from "@/server/db/schema";
 
-export default function Breadcrumbs() {
-  // const breadcrumbs = useMemo(() => {
-  //   const path = [];
-  //   let currentId: number | null = currentFolderId;
-
-  //   while (currentId > 1) {
-  //     const folder = mockFolders.find((f) => f.id === currentId);
-  //     if (!folder) break;
-
-  //     path.unshift({ id: currentId, name: folder.name });
-  //     currentId = folder.parent;
-  //   }
-
-  //   return path;
-  // }, [currentFolderId]);
-
-  const breadcrumbs: unknown[] = [];
-
+export default function Breadcrumbs({
+  parents,
+}: {
+  parents: (typeof folders.$inferSelect)[];
+}) {
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        {breadcrumbs.map((item, index) => (
+        {parents.map((item, index) => (
           <>
             <BreadcrumbItem key={item.id}>
-              {index === breadcrumbs.length - 1 ? (
+              {index === parents.length - 1 ? (
                 <span className="cursor-default">{item.name}</span>
               ) : (
                 <BreadcrumbLink href={`/${item.id}`} className="cursor-pointer">
@@ -41,7 +27,7 @@ export default function Breadcrumbs() {
                 </BreadcrumbLink>
               )}
             </BreadcrumbItem>
-            {index < breadcrumbs.length - 1 && (
+            {index < parents.length - 1 && (
               <BreadcrumbSeparator key={`separator-${item.id}`}>
                 <ChevronRight className="h-4 w-4" />
               </BreadcrumbSeparator>
