@@ -9,25 +9,23 @@ import {
 import { mockFolders } from "@/lib/mock";
 import { useMemo } from "react";
 
-export default function Breadcrumbs({
-  currentFolderId,
-}: {
-  currentFolderId: number;
-}) {
-  const breadcrumbs = useMemo(() => {
-    const path = [];
-    let currentId: number | null = currentFolderId;
+export default function Breadcrumbs() {
+  // const breadcrumbs = useMemo(() => {
+  //   const path = [];
+  //   let currentId: number | null = currentFolderId;
 
-    while (currentId > 1) {
-      const folder = mockFolders.find((f) => f.id === currentId);
-      if (!folder) break;
+  //   while (currentId > 1) {
+  //     const folder = mockFolders.find((f) => f.id === currentId);
+  //     if (!folder) break;
 
-      path.unshift({ id: currentId, name: folder.name });
-      currentId = folder.parent;
-    }
+  //     path.unshift({ id: currentId, name: folder.name });
+  //     currentId = folder.parent;
+  //   }
 
-    return path;
-  }, [currentFolderId]);
+  //   return path;
+  // }, [currentFolderId]);
+
+  const breadcrumbs: unknown[] = [];
 
   return (
     <Breadcrumb>
@@ -38,7 +36,7 @@ export default function Breadcrumbs({
               {index === breadcrumbs.length - 1 ? (
                 <span className="cursor-default">{item.name}</span>
               ) : (
-                <BreadcrumbLink className="cursor-pointer">
+                <BreadcrumbLink href={`/${item.id}`} className="cursor-pointer">
                   {item.name}
                 </BreadcrumbLink>
               )}

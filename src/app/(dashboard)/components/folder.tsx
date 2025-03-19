@@ -7,22 +7,21 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import type { folders as foldersT } from "@/server/db/schema";
+import Link from "next/link";
 
 export default function Folder({
   folder,
-  handleFolderClick,
 }: {
   folder: typeof foldersT.$inferSelect;
-  handleFolderClick: () => void;
 }) {
   if (!folder) {
     return null;
   }
 
   return (
-    <div
+    <Link
       className="flex cursor-pointer items-center space-x-3 rounded-lg border border-border p-3 hover:bg-muted/50"
-      onClick={handleFolderClick}
+      href={`/${folder.id}`}
     >
       <FolderIcon className="h-9 w-9 text-blue-400" />
       <div className="min-w-0 flex-1">
@@ -46,6 +45,6 @@ export default function Folder({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    </div>
+    </Link>
   );
 }
