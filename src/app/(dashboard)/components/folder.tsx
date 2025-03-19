@@ -6,13 +6,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { Folder } from "@/lib/mock";
+import type { folders as foldersT } from "@/server/db/schema";
 
 export default function Folder({
   folder,
   handleFolderClick,
 }: {
-  folder: Folder;
+  folder: typeof foldersT.$inferSelect;
   handleFolderClick: () => void;
 }) {
   if (!folder) {

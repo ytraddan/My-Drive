@@ -11,16 +11,14 @@ import { useMemo } from "react";
 
 export default function Breadcrumbs({
   currentFolderId,
-  handleClick,
 }: {
-  currentFolderId: string;
-  handleClick: (id: string) => void;
+  currentFolderId: number;
 }) {
   const breadcrumbs = useMemo(() => {
     const path = [];
-    let currentId: string | null = currentFolderId;
+    let currentId: number | null = currentFolderId;
 
-    while (currentId) {
+    while (currentId > 1) {
       const folder = mockFolders.find((f) => f.id === currentId);
       if (!folder) break;
 
@@ -40,10 +38,7 @@ export default function Breadcrumbs({
               {index === breadcrumbs.length - 1 ? (
                 <span className="cursor-default">{item.name}</span>
               ) : (
-                <BreadcrumbLink
-                  className="cursor-pointer"
-                  onClick={() => handleClick(item.id)}
-                >
+                <BreadcrumbLink className="cursor-pointer">
                   {item.name}
                 </BreadcrumbLink>
               )}

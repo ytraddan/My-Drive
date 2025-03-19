@@ -1,6 +1,5 @@
 import {
   File as FileIcon,
-  Folder as FolderIcon,
   MoreVertical,
   FileImage,
   FileText,
@@ -14,10 +13,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { File, Folder } from "@/lib/mock";
+import type { files as filesT } from "@/server/db/schema";
+
 import Link from "next/link";
 
-export default function File({ file }: { file: File }) {
+export default function File({ file }: { file: typeof filesT.$inferSelect }) {
   const getFileIcon = (filename: string) => {
     const extension = filename.split(".").pop()?.toLowerCase();
 
@@ -47,7 +47,7 @@ export default function File({ file }: { file: File }) {
       <Link className="min-w-0 flex-1" href={file.url} target="_blank">
         <p className="truncate text-sm font-medium">{file.name}</p>
         <p className="text-xs text-muted-foreground">
-          {file.size} • {file.modified}
+          {file.size} • {file.last_modified}
         </p>
       </Link>
       <DropdownMenu>
