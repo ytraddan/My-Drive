@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import type { folders_table } from "@/server/db/schema";
+import React from "react";
 
 export default function Breadcrumbs({
   parents,
@@ -17,8 +18,8 @@ export default function Breadcrumbs({
     <Breadcrumb>
       <BreadcrumbList>
         {parents.map((item, index) => (
-          <>
-            <BreadcrumbItem key={item.id}>
+          <React.Fragment key={item.id}>
+            <BreadcrumbItem>
               {index === parents.length - 1 ? (
                 <span className="cursor-default">{item.name}</span>
               ) : (
@@ -28,11 +29,11 @@ export default function Breadcrumbs({
               )}
             </BreadcrumbItem>
             {index < parents.length - 1 && (
-              <BreadcrumbSeparator key={`separator-${item.id}`}>
+              <BreadcrumbSeparator>
                 <ChevronRight className="h-4 w-4" />
               </BreadcrumbSeparator>
             )}
-          </>
+          </React.Fragment>
         ))}
       </BreadcrumbList>
     </Breadcrumb>

@@ -19,7 +19,7 @@ export const QUERIES = {
       .where(eq(files_table.parent, folderId));
   },
 
-  getAllFolderParents: async function (folderId: number) {
+  getFolderParents: async function (folderId: number) {
     const parents = [];
     let currentId: number | null = folderId;
 

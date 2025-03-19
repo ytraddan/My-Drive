@@ -8,9 +8,31 @@ import {
   Star,
   Trash2,
   Users,
+  type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import UploadButton from "./upload-button";
+
+interface SidebarItemProps {
+  icon: LucideIcon;
+  label: string;
+  href: string;
+}
+
+const mainNavItems = [
+  { icon: HardDrive, label: "My Drive", href: "#" },
+  { icon: Computer, label: "Computers", href: "#" },
+  { icon: Share2, label: "Shared with me", href: "#" },
+  { icon: Clock, label: "Recent", href: "#" },
+  { icon: Star, label: "Starred", href: "#" },
+  { icon: Trash2, label: "Trash", href: "#" },
+];
+
+const categoryItems = [
+  { icon: ImageIcon, label: "Images", href: "#" },
+  { icon: FileText, label: "Documents", href: "#" },
+  { icon: Users, label: "Shared", href: "#" },
+];
 
 export default function Sidebar() {
   return (
@@ -19,66 +41,18 @@ export default function Sidebar() {
         <UploadButton />
 
         <div className="space-y-1">
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#">
-              <HardDrive className="mr-2 h-4 w-4" />
-              My Drive
-            </a>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#">
-              <Computer className="mr-2 h-4 w-4" />
-              Computers
-            </a>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#">
-              <Share2 className="mr-2 h-4 w-4" />
-              Shared with me
-            </a>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#">
-              <Clock className="mr-2 h-4 w-4" />
-              Recent
-            </a>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#">
-              <Star className="mr-2 h-4 w-4" />
-              Starred
-            </a>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#">
-              <Trash2 className="mr-2 h-4 w-4" />
-              Trash
-            </a>
-          </Button>
+          {mainNavItems.map((item) => (
+            <SidebarItem key={item.label} {...item} />
+          ))}
         </div>
 
         <div className="space-y-1">
           <h3 className="px-2 text-xs font-semibold text-muted-foreground">
             Categories
           </h3>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#">
-              <ImageIcon className="mr-2 h-4 w-4" />
-              Images
-            </a>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#">
-              <FileText className="mr-2 h-4 w-4" />
-              Documents
-            </a>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start" asChild>
-            <a href="#">
-              <Users className="mr-2 h-4 w-4" />
-              Shared
-            </a>
-          </Button>
+          {categoryItems.map((item) => (
+            <SidebarItem key={item.label} {...item} />
+          ))}
         </div>
 
         <div className="pt-4">
@@ -94,5 +68,16 @@ export default function Sidebar() {
         </div>
       </div>
     </div>
+  );
+}
+
+function SidebarItem({ icon: Icon, label, href }: SidebarItemProps) {
+  return (
+    <Button variant="ghost" className="w-full justify-start" asChild>
+      <a href={href}>
+        <Icon className="mr-2 h-4 w-4" />
+        {label}
+      </a>
+    </Button>
   );
 }
