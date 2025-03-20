@@ -1,6 +1,7 @@
-import { Search, User } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
   return (
@@ -18,12 +19,14 @@ export default function Header() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Avatar className="h-10 w-10">
-            <AvatarImage src="/placeholder.svg" alt="User" />
-            <AvatarFallback>
-              <User className="h-6 w-6" />
-            </AvatarFallback>
-          </Avatar>
+          <SignedOut>
+            <SignInButton>
+              <Button className="rounded-full">Sign In</Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
       </div>
     </header>

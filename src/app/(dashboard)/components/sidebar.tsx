@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SignedIn } from "@clerk/nextjs";
 import UploadButton from "./upload-button";
 
 interface SidebarItemProps {
@@ -54,18 +55,25 @@ export default function Sidebar() {
             <SidebarItem key={item.label} {...item} />
           ))}
         </div>
+        <SignedIn>
+          <Storage />
+        </SignedIn>
+      </div>
+    </div>
+  );
+}
 
-        <div className="pt-4">
-          <div className="flex items-center justify-between">
-            <div className="text-xs text-muted-foreground">Storage</div>
-            <div className="text-xs text-muted-foreground">
-              7.5 GB of 15 GB used
-            </div>
-          </div>
-          <div className="mt-2 h-2 rounded-full bg-muted">
-            <div className="h-2 w-1/2 rounded-full bg-primary"></div>
-          </div>
+function Storage() {
+  return (
+    <div className="pt-4">
+      <div className="flex items-center justify-between">
+        <div className="text-xs text-muted-foreground">Storage</div>
+        <div className="text-xs text-muted-foreground">
+          7.5 GB of 15 GB used
         </div>
+      </div>
+      <div className="mt-2 h-2 rounded-full bg-muted">
+        <div className="h-2 w-1/2 rounded-full bg-primary"></div>
       </div>
     </div>
   );
