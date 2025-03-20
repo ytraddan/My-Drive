@@ -21,7 +21,6 @@ export const files_table = createTable(
     name: text("name").notNull(),
     size: int("size").notNull(),
     url: text("url").notNull(),
-    last_modified: text("last_modified").notNull(),
     parent: bigint("parent", { mode: "number", unsigned: true }).notNull(),
   },
   (t) => {
@@ -42,3 +41,6 @@ export const folders_table = createTable(
     return [index("parent_index").on(t.parent)];
   },
 );
+
+export type DB_FileType = typeof files_table.$inferInsert;
+export type DB_FolderType = typeof folders_table.$inferInsert;

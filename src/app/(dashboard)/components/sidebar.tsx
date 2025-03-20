@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SignedIn } from "@clerk/nextjs";
-import UploadButton from "./upload-button";
+import { UploadButton } from "@/components/uploadthing";
 
 interface SidebarItemProps {
   icon: LucideIcon;
@@ -21,7 +21,7 @@ interface SidebarItemProps {
 }
 
 const mainNavItems = [
-  { icon: HardDrive, label: "My Drive", href: "#" },
+  { icon: HardDrive, label: "My Drive", href: "/1" },
   { icon: Computer, label: "Computers", href: "#" },
   { icon: Share2, label: "Shared with me", href: "#" },
   { icon: Clock, label: "Recent", href: "#" },

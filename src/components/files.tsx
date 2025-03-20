@@ -16,15 +16,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { files_table } from "@/server/db/schema";
+import type { DB_FileType } from "@/server/db/schema";
 
 import Link from "next/link";
 
-export default function File({
-  files,
-}: {
-  files: (typeof files_table.$inferSelect)[];
-}) {
+export default function File({ files }: { files: DB_FileType[] }) {
   const getFileIcon = (filename: string) => {
     const extension = filename.split(".").pop()?.toLowerCase();
 
@@ -64,7 +60,7 @@ export default function File({
           <Link className="min-w-0 flex-1" href={file.url} target="_blank">
             <p className="truncate text-sm font-medium">{file.name}</p>
             <p className="text-xs text-muted-foreground">
-              {file.size} • {file.last_modified}
+              {file.size} •{/* {file.last_modified} */}
             </p>
           </Link>
           <DropdownMenu>

@@ -1,13 +1,9 @@
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import type { ReactNode } from "react";
 import Sidebar from "./components/sidebar";
 import Header from "./components/header";
-import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
-interface DashboardLayoutProps {
-  children: ReactNode;
-}
-
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <div className="dark flex min-h-screen flex-col bg-background text-foreground">
       <Header />

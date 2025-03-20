@@ -8,14 +8,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { folders_table } from "@/server/db/schema";
+import type { DB_FolderType } from "@/server/db/schema";
 import Link from "next/link";
 
-export default function Folder({
-  folders,
-}: {
-  folders: (typeof folders_table.$inferSelect)[];
-}) {
+export default function Folder({ folders }: { folders: DB_FolderType[] }) {
   if (!folders) {
     return null;
   }

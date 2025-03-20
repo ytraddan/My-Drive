@@ -1,6 +1,6 @@
 import "server-only";
 
-import { files_table, folders_table } from "@/server/db/schema";
+import { folders_table as folderSchema, files_table as fileSchema } from "@/server/db/schema";
 import { db } from "@/server/db";
 import { eq } from "drizzle-orm";
 
@@ -8,15 +8,15 @@ export const QUERIES = {
   getFolders: function (folderId: number) {
     return db
       .select()
-      .from(folders_table)
-      .where(eq(folders_table.parent, folderId));
+      .from(folderSchema)
+      .where(eq(folderSchema.parent, folderId));
   },
 
   getFiles: function (folderId: number) {
     return db
       .select()
-      .from(files_table)
-      .where(eq(files_table.parent, folderId));
+      .from(fileSchema)
+      .where(eq(fileSchema.parent, folderId));
   },
 
   getFolderParents: async function (folderId: number) {
@@ -26,8 +26,8 @@ export const QUERIES = {
     while (currentId !== null) {
       const folder = await db
         .selectDistinct()
-        .from(folders_table)
-        .where(eq(folders_table.id, currentId));
+        .from(folderSchema)
+        .where(eq(folderSchema.id, currentId));
 
       if (!folder[0]) {
         throw new Error("Parent folder not found");
@@ -38,5 +38,19 @@ export const QUERIES = {
     }
 
     return parents;
+  },
+};
+
+export const MUTATIONS = {
+  createFile: async function (input: {
+    file: {
+      name: string;
+      size: number;
+      url: string;
+      parent: number;
+    };
+    userId: string;
+  }) {
+    return await db.insert(fileSchema).values(input.file);
   },
 };
