@@ -5,7 +5,7 @@ import {
   files_table as fileSchema,
 } from "@/server/db/schema";
 import { db } from "@/server/db";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 
 export const QUERIES = {
   getFolders: function (folderId: number) {
@@ -46,6 +46,25 @@ export const QUERIES = {
       .from(folderSchema)
       .where(eq(folderSchema.id, folderId));
     return folder[0];
+  },
+
+  getTotalSize: async function () {
+    const result = await db
+      .select({
+        total: sql<number>`CAST(sum(${fileSchema.size}) AS SIGNED)`,
+      })
+      .from(fileSchema);
+    return result[0]?.total ?? 0;
+  },
+
+  getUserTotalSize: async function (ownerId: string) {
+    const result = await db
+      .select({
+        total: sql<number>`sum(${fileSchema.size})`,
+      })
+      .from(fileSchema)
+      .where(eq(fileSchema.ownerId, ownerId));
+    return result[0]?.total ?? 0;
   },
 };
 
