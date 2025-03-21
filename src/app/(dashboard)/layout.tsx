@@ -1,7 +1,7 @@
 import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import type { ReactNode } from "react";
-import Sidebar from "./components/sidebar";
-import Header from "./components/header";
+import Sidebar from "@/components/sidebar";
+import Header from "@/components/header";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (

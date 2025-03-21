@@ -4,15 +4,28 @@ import { generateUploadButton } from "@uploadthing/react";
 import { Upload as UploadIcon } from "lucide-react";
 import type { OurFileRouter } from "@/app/api/uploadthing/core";
 import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
-
-const UploadBtn = generateUploadButton<OurFileRouter>();
+import { useParams, useRouter } from "next/navigation";
 
 export function UploadButton() {
   const navigate = useRouter();
+  const { folderId } = useParams();
+
+  const parsedFolderId = parseInt(folderId as string);
+
+  console.log(parsedFolderId);
+  if (isNaN(parsedFolderId)) {
+    return null;
+  }
+
+  const Upload = generateUploadButton<OurFileRouter>();
 
   return (
-    <UploadBtn
+    <Upload
+      input={{ folderId: parsedFolderId }}
+      endpoint="imageUploader"
+      onClientUploadComplete={() => {
+        navigate.refresh();
+      }}
       content={{
         button({ ready, isUploading }) {
           if (ready && !isUploading)
@@ -39,10 +52,6 @@ export function UploadButton() {
         button: "w-full",
         container: "min-h-16 justify-between",
         allowedContent: "self-start text-white px-1",
-      }}
-      endpoint="imageUploader"
-      onClientUploadComplete={() => {
-        navigate.refresh();
       }}
     />
   );

@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SignedIn } from "@clerk/nextjs";
-import { UploadButton } from "@/components/uploadthing";
+import { UploadButton } from "@/components/upload-button";
 
 interface SidebarItemProps {
   icon: LucideIcon;
