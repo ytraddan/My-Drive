@@ -1,15 +1,24 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import "@/styles/globals.css";
-
+import { PostHogProvider } from "./providers";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import Sidebar from "@/components/sidebar";
+import Header from "@/components/header";
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut as SignedOutClerk,
+} from "@clerk/nextjs";
+
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: "My Drive",
   description: "Google drive clone",
-  icons: [{ rel: "icon", url: "/favicon.svg" }],
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -22,8 +31,29 @@ export default function RootLayout({
       }}
     >
       <html lang="en" className={`${GeistSans.variable}`}>
-        <body>{children}</body>
+        <PostHogProvider>
+          <body className="dark flex min-h-screen flex-col bg-background text-foreground">
+            <Header />
+            <div className="flex flex-1 overflow-hidden">
+              <Sidebar />
+              <main className="flex-1 overflow-auto p-4">
+                <SignedOut />
+                <SignedIn>{children}</SignedIn>
+              </main>
+            </div>
+          </body>
+        </PostHogProvider>
       </html>
     </ClerkProvider>
+  );
+}
+
+function SignedOut() {
+  return (
+    <SignedOutClerk>
+      <span className="block pt-10 text-center text-2xl font-bold">
+        Please <SignInButton>Sign In</SignInButton> First
+      </span>
+    </SignedOutClerk>
   );
 }

@@ -4,7 +4,7 @@ import File from "@/components/files";
 import Folder from "@/components/folders";
 import type { DB_FileType, DB_FolderType } from "@/server/db/schema";
 
-export default function MyDrive() {
+export default function HomePage() {
   // Example data - would be replaced with actual data fetching
   const recentFolders: DB_FolderType[] = [
     { id: 1, name: "Documents", ownerId: "1" },

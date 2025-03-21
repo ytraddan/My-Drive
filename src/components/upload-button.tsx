@@ -29,14 +29,14 @@ export function UploadButton() {
         button({ ready, isUploading }) {
           if (!ready)
             return (
-              <Button className="pointer-events-none w-full cursor-wait gap-2">
+              <Button className="w-full cursor-wait gap-2 active:pointer-events-none">
                 <UploadIcon className="h-4 w-4" />
                 <span className="text-sm font-medium">Upload</span>
               </Button>
             );
           if (isUploading)
             return (
-              <Button className="pointer-events-none w-full cursor-wait gap-2">
+              <Button className="w-full animate-pulse cursor-wait gap-2 active:pointer-events-none">
                 <UploadIcon className="h-4 w-4" />
                 <span className="text-sm font-medium">Uploading...</span>
               </Button>
