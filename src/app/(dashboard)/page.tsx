@@ -7,13 +7,27 @@ import type { DB_FileType, DB_FolderType } from "@/server/db/schema";
 export default function MyDrive() {
   // Example data - would be replaced with actual data fetching
   const recentFolders: DB_FolderType[] = [
-    { id: 1, name: "Documents" },
-    { id: 2, name: "Photos" },
+    { id: 1, name: "Documents", ownerId: "1" },
+    { id: 2, name: "Photos", ownerId: "1" },
   ];
 
   const recentFiles: DB_FileType[] = [
-    { id: 1, name: "report.pdf", size: 2300000, url: "#", parent: 1 },
-    { id: 2, name: "presentation.pptx", size: 4700000, url: "#", parent: 1 },
+    {
+      id: 1,
+      name: "report.pdf",
+      size: 2300,
+      url: "#",
+      parent: 1,
+      ownerId: "1",
+    },
+    {
+      id: 2,
+      name: "presentation.pptx",
+      size: 4700,
+      url: "#",
+      parent: 1,
+      ownerId: "1",
+    },
   ];
 
   return (

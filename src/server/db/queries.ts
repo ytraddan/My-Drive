@@ -1,6 +1,9 @@
 import "server-only";
 
-import { folders_table as folderSchema, files_table as fileSchema } from "@/server/db/schema";
+import {
+  folders_table as folderSchema,
+  files_table as fileSchema,
+} from "@/server/db/schema";
 import { db } from "@/server/db";
 import { eq } from "drizzle-orm";
 
@@ -13,10 +16,7 @@ export const QUERIES = {
   },
 
   getFiles: function (folderId: number) {
-    return db
-      .select()
-      .from(fileSchema)
-      .where(eq(fileSchema.parent, folderId));
+    return db.select().from(fileSchema).where(eq(fileSchema.parent, folderId));
   },
 
   getFolderParents: async function (folderId: number) {
@@ -39,18 +39,24 @@ export const QUERIES = {
 
     return parents;
   },
+
+  getFolderById: async function (folderId: number) {
+    const folder = await db
+      .select()
+      .from(folderSchema)
+      .where(eq(folderSchema.id, folderId));
+    return folder[0];
+  },
 };
 
 export const MUTATIONS = {
   createFile: async function (input: {
-    file: {
-      name: string;
-      size: number;
-      url: string;
-      parent: number;
-    };
-    userId: string;
+    ownerId: string;
+    name: string;
+    size: number;
+    url: string;
+    parent: number;
   }) {
-    return await db.insert(fileSchema).values(input.file);
+    return await db.insert(fileSchema).values(input);
   },
 };

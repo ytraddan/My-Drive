@@ -19,6 +19,7 @@ import {
 import type { DB_FileType } from "@/server/db/schema";
 
 import Link from "next/link";
+import { formatDate, formatFileSize } from "@/lib/utils";
 
 export default function File({ files }: { files: DB_FileType[] }) {
   const getFileIcon = (filename: string) => {
@@ -60,7 +61,7 @@ export default function File({ files }: { files: DB_FileType[] }) {
           <Link className="min-w-0 flex-1" href={file.url} target="_blank">
             <p className="truncate text-sm font-medium">{file.name}</p>
             <p className="text-xs text-muted-foreground">
-              {file.size} •{/* {file.last_modified} */}
+              {formatFileSize(file.size)} • {formatDate(file.createdAt)}
             </p>
           </Link>
           <DropdownMenu>

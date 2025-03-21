@@ -22,7 +22,7 @@ export default async function MyDrive(props: {
   return (
     <div className="space-y-4">
       <Breadcrumbs parents={parents} />
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
         <Folders folders={folders} />
         <Files files={files} />
       </div>

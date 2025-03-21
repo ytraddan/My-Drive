@@ -12,7 +12,6 @@ export function UploadButton() {
 
   const parsedFolderId = parseInt(folderId as string);
 
-  console.log(parsedFolderId);
   if (isNaN(parsedFolderId)) {
     return null;
   }
@@ -22,36 +21,49 @@ export function UploadButton() {
   return (
     <Upload
       input={{ folderId: parsedFolderId }}
-      endpoint="imageUploader"
+      endpoint="driveUploader"
       onClientUploadComplete={() => {
         navigate.refresh();
       }}
       content={{
         button({ ready, isUploading }) {
-          if (ready && !isUploading)
+          if (!ready)
             return (
-              <Button className="w-full gap-2 active:pointer-events-none">
+              <Button className="pointer-events-none w-full cursor-wait gap-2">
                 <UploadIcon className="h-4 w-4" />
                 <span className="text-sm font-medium">Upload</span>
+              </Button>
+            );
+          if (isUploading)
+            return (
+              <Button className="pointer-events-none w-full cursor-wait gap-2">
+                <UploadIcon className="h-4 w-4" />
+                <span className="text-sm font-medium">Uploading...</span>
               </Button>
             );
           return (
             <Button className="w-full gap-2 active:pointer-events-none">
               <UploadIcon className="h-4 w-4" />
-              <span className="text-sm font-medium">Loading...</span>
+              <span className="text-sm font-medium">Upload</span>
             </Button>
           );
         },
-        // allowedContent({ ready, fileTypes, isUploading }) {
-        //   if (!ready) return "Checking what you allow";
-        //   if (isUploading) return "Seems like stuff is uploading";
-        //   return `Stuff you can upload: ${fileTypes.join(", ")}`;
-        // },
+        allowedContent({ ready, isUploading, uploadProgress }) {
+          if (!ready) return "Files up to 64MB";
+          if (isUploading)
+            return (
+              <div className="flex justify-between">
+                <span>Files up to 64MB</span>
+                <span>{uploadProgress}%</span>
+              </div>
+            );
+          return "Files up to 64MB";
+        },
       }}
       appearance={{
         button: "w-full",
-        container: "min-h-16 justify-between",
-        allowedContent: "self-start text-white px-1",
+        container: "gap-2",
+        allowedContent: "self-start text-white px-1 w-full",
       }}
     />
   );
