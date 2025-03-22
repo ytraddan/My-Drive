@@ -1,6 +1,11 @@
 "use client";
 
-import { Folder as FolderIcon, MoreVertical, Star, Share2 } from "lucide-react";
+import {
+  FolderIcon,
+  MoreVerticalIcon,
+  StarIcon,
+  Trash2Icon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -26,20 +31,20 @@ export default function Folder({ folder }: { folder: DB_FolderType }) {
         <p className="truncate text-sm font-medium">{folder.name}</p>
       </div>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
+        <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" className="h-8 w-8">
-            <MoreVertical className="h-4 w-4" />
+            <MoreVerticalIcon className="h-4 w-4" />
             <span className="sr-only">More</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
           <DropdownMenuItem>
-            <Star className="mr-2 h-4 w-4" />
+            <StarIcon className="mr-2 h-4 w-4" />
             <span>Star</span>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Share2 className="mr-2 h-4 w-4" />
-            <span>Share</span>
+          <DropdownMenuItem >
+            <Trash2Icon className="mr-2 h-4 w-4" />
+            <span>Delete</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

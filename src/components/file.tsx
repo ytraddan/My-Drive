@@ -1,10 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import type { DB_FileType } from "@/server/db/schema";
+import { MoreVerticalIcon, StarIcon, Trash2Icon } from "lucide-react";
 import { getFormatedDate, getFormatedSize, getFileIcon } from "@/lib/utils";
+import type { DB_FileType } from "@/server/db/schema";
+import { Button } from "@/components/ui/button";
+import { deleteFile } from "@/server/actions";
 import Link from "next/link";
-import { MoreVertical, Star, Share2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,20 +28,20 @@ export default function File({ file }: { file: DB_FileType }) {
         </p>
       </Link>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
+        <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" className="h-8 w-8">
-            <MoreVertical className="h-4 w-4" />
+            <MoreVerticalIcon className="h-4 w-4" />
             <span className="sr-only">More</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
           <DropdownMenuItem>
-            <Star className="mr-2 h-4 w-4" />
+            <StarIcon className="mr-2 h-4 w-4" />
             <span>Star</span>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Share2 className="mr-2 h-4 w-4" />
-            <span>Share</span>
+          <DropdownMenuItem onClick={() => deleteFile(file.id!)}>
+            <Trash2Icon className="mr-2 h-4 w-4" />
+            <span>Delete</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

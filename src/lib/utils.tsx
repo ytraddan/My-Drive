@@ -2,11 +2,11 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { FILE_PATTERNS } from "@/constants/filePatterns";
 import {
-  File as FileIcon,
-  FileImage,
-  FileText,
-  FileMusic,
-  FileVideo,
+  FileIcon,
+  FileImageIcon,
+  FileTextIcon,
+  FileMusicIcon,
+  FileVideoIcon,
 } from "lucide-react";
 
 export function cn(...inputs: ClassValue[]) {
@@ -56,13 +56,13 @@ export const getFileIcon = (filename: string) => {
     ) {
       switch (type) {
         case "images":
-          return <FileImage className="h-7 w-7 text-blue-400" />;
+          return <FileImageIcon className="h-7 w-7 text-blue-400" />;
         case "documents":
-          return <FileText className="h-7 w-7 text-green-400" />;
+          return <FileTextIcon className="h-7 w-7 text-green-400" />;
         case "audio":
-          return <FileMusic className="h-7 w-7 text-purple-400" />;
+          return <FileMusicIcon className="h-7 w-7 text-purple-400" />;
         case "video":
-          return <FileVideo className="h-7 w-7 text-red-400" />;
+          return <FileVideoIcon className="h-7 w-7 text-red-400" />;
       }
     }
   }

@@ -39,7 +39,7 @@ const SidebarItem = ({ Icon, label, href }: (typeof categoryItems)[0]) => {
 
 export default function Sidebar() {
   return (
-    <div className="hidden w-64 border-r border-border p-4 md:block">
+    <div className="hidden w-64 overflow-y-scroll border-r border-border p-4 md:block">
       <div className="space-y-6">
         <UploadButton />
 

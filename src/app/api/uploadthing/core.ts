@@ -56,6 +56,7 @@ export const ourFileRouter = {
         size: file.size,
         url: file.url,
         parent: metadata.parentId,
+        fileKey: file.key,
       });
 
       // Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
