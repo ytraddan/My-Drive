@@ -9,9 +9,9 @@ import { MAX_FILE_SIZE } from "@/server/db/schema";
 
 export function UploadButton() {
   const navigate = useRouter();
-  const { folderId } = useParams();
+  const { id } = useParams();
 
-  const parsedFolderId = parseInt(folderId as string);
+  const parsedFolderId = parseInt(id as string);
 
   if (isNaN(parsedFolderId)) {
     return null;

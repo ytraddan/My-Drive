@@ -3,43 +3,41 @@ import { Button } from "@/components/ui/button";
 import { Storage } from "@/components/storage";
 import {
   Clock,
-  Computer,
   FileText,
   HardDrive,
   Image as ImageIcon,
-  Share2,
   Star,
   Trash2,
-  Users,
+  AudioLines,
+  Clapperboard,
 } from "lucide-react";
 
 const mainNavItems = [
-  { Icon: HardDrive, label: "My Drive", href: "/1" },
-  { Icon: Computer, label: "Computers", href: "#" },
-  { Icon: Share2, label: "Shared with me", href: "#" },
-  { Icon: Clock, label: "Recent", href: "#" },
-  { Icon: Star, label: "Starred", href: "#" },
-  { Icon: Trash2, label: "Trash", href: "#" },
+  { Icon: HardDrive, label: "Drive", href: "/folder/1" },
+  { Icon: Clock, label: "Recent", href: "/recent" },
+  { Icon: Star, label: "Starred", href: "/starred" },
+  { Icon: Trash2, label: "Trash", href: "/trash" },
 ];
 
 const categoryItems = [
-  { Icon: ImageIcon, label: "Images", href: "#" },
-  { Icon: FileText, label: "Documents", href: "#" },
-  { Icon: Users, label: "Shared", href: "#" },
+  { Icon: ImageIcon, label: "Images", href: "/images" },
+  { Icon: FileText, label: "Documents", href: "/documents" },
+  { Icon: AudioLines, label: "Audio", href: "/audio" },
+  { Icon: Clapperboard, label: "Video", href: "/video" },
 ];
 
-export default function Sidebar() {
-  const SidebarItem = ({ Icon, label, href }: (typeof categoryItems)[0]) => {
-    return (
-      <Button variant="ghost" className="w-full justify-start" asChild>
-        <a href={href}>
-          <Icon className="mr-2 h-4 w-4" />
-          {label}
-        </a>
-      </Button>
-    );
-  };
+const SidebarItem = ({ Icon, label, href }: (typeof categoryItems)[0]) => {
+  return (
+    <Button variant="ghost" className="w-full justify-start" asChild>
+      <a href={href}>
+        <Icon className="mr-2 h-4 w-4" />
+        {label}
+      </a>
+    </Button>
+  );
+};
 
+export default function Sidebar() {
   return (
     <div className="hidden w-64 border-r border-border p-4 md:block">
       <div className="space-y-6">

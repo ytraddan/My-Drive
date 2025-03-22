@@ -54,5 +54,5 @@ export const folders_table = createTable(
 export type DB_FileType = typeof files_table.$inferInsert;
 export type DB_FolderType = typeof folders_table.$inferInsert;
 
-export const MAX_STORAGE_SIZE = 200 * 1024 * 1024; // 100 MB in bytes
+export const MAX_STORAGE_SIZE = 300 * 1024 * 1024; // 100 MB in bytes
 export const MAX_FILE_SIZE = "64MB";

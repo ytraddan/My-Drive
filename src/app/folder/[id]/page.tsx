@@ -1,13 +1,13 @@
 import { QUERIES } from "@/server/db/queries";
 import Breadcrumbs from "@/components/breadcrumbs";
-import Folders from "@/components/folders";
-import Files from "@/components/files";
+import Folder from "@/components/folder";
+import Files from "@/components/file";
 
 export default async function MyDrive(props: {
-  params: Promise<{ folderId: string }>;
+  params: Promise<{ id: string }>;
 }) {
   const params = await props.params;
-  const parsedFolderId = parseInt(params.folderId);
+  const parsedFolderId = parseInt(params.id);
 
   if (isNaN(parsedFolderId)) {
     return <div>Invalid Id</div>;
@@ -23,8 +23,13 @@ export default async function MyDrive(props: {
     <div className="space-y-4">
       <Breadcrumbs parents={parents} />
       <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
-        <Folders folders={folders} />
-        <Files files={files} />
+        {folders.map((folder) => (
+          <Folder key={folder.id} folder={folder} />
+        ))}
+
+        {files.map((file) => (
+          <Files key={file.id} file={file} />
+        ))}
       </div>
     </div>
   );

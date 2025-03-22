@@ -27,7 +27,7 @@ export const ourFileRouter = {
         throw new UploadThingError("Unauthorized");
       }
 
-      const storageSize = await QUERIES.getTotalSize();
+      const storageSize = await QUERIES.getTotalFileSize();
       const totalUploadSize = files.reduce((sum, file) => sum + file.size, 0);
 
       if (storageSize + totalUploadSize > MAX_STORAGE_SIZE) {

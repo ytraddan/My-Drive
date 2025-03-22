@@ -19,7 +19,10 @@ export default function Breadcrumbs({ parents }: { parents: DB_FolderType[] }) {
               {index === parents.length - 1 ? (
                 <span className="cursor-default">{item.name}</span>
               ) : (
-                <BreadcrumbLink href={`/${item.id}`} className="cursor-pointer">
+                <BreadcrumbLink
+                  href={`/folder/${item.id}`}
+                  className="cursor-pointer"
+                >
                   {item.name}
                 </BreadcrumbLink>
               )}

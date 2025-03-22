@@ -1,7 +1,7 @@
 import { Upload, FolderPlus, Clock, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import File from "@/components/files";
-import Folder from "@/components/folders";
+import File from "@/components/file";
+import Folder from "@/components/folder";
 import type { DB_FileType, DB_FolderType } from "@/server/db/schema";
 
 export default function HomePage() {
@@ -58,8 +58,12 @@ export default function HomePage() {
         </h2>
 
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <Folder folders={recentFolders} />
-          <File files={recentFiles} />
+          {recentFiles.map((file) => (
+            <File key={file.id} file={file} />
+          ))}
+          {recentFolders.map((folder) => (
+            <Folder key={folder.id} folder={folder} />
+          ))}
         </div>
       </section>
 

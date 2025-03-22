@@ -1,22 +1,43 @@
 import "server-only";
 
+import { FILE_PATTERNS, type FilePattern } from "@/constants/filePatterns";
+import { eq, sql, or } from "drizzle-orm";
+import { db } from "@/server/db";
 import {
   folders_table as folderSchema,
   files_table as fileSchema,
+  type DB_FileType,
 } from "@/server/db/schema";
-import { db } from "@/server/db";
-import { eq, sql } from "drizzle-orm";
 
 export const QUERIES = {
   getFolders: function (folderId: number) {
     return db
       .select()
       .from(folderSchema)
-      .where(eq(folderSchema.parent, folderId));
+      .where(eq(folderSchema.parent, folderId))
+      .orderBy(folderSchema.id);
   },
 
   getFiles: function (folderId: number) {
-    return db.select().from(fileSchema).where(eq(fileSchema.parent, folderId));
+    return db
+      .select()
+      .from(fileSchema)
+      .where(eq(fileSchema.parent, folderId))
+      .orderBy(fileSchema.id);
+  },
+
+  getFilesByCategory: async function (category: FilePattern) {
+    return db
+      .select()
+      .from(fileSchema)
+      .where(
+        or(
+          ...FILE_PATTERNS[category].map(
+            (pattern) => sql`LOWER(${fileSchema.name}) LIKE LOWER(${pattern})`,
+          ),
+        ),
+      )
+      .orderBy(fileSchema.id);
   },
 
   getFolderParents: async function (folderId: number) {
@@ -48,7 +69,7 @@ export const QUERIES = {
     return folder[0];
   },
 
-  getTotalSize: async function () {
+  getTotalFileSize: async function () {
     const result = await db
       .select({
         total: sql<number>`CAST(sum(${fileSchema.size}) AS SIGNED)`,
@@ -57,25 +78,19 @@ export const QUERIES = {
     return result[0]?.total ?? 0;
   },
 
-  getUserTotalSize: async function (ownerId: string) {
+  getUsersTotalFileSize: async function (userId: string) {
     const result = await db
       .select({
-        total: sql<number>`sum(${fileSchema.size})`,
+        total: sql<number>`CAST(sum(${fileSchema.size}) AS SIGNED)`,
       })
       .from(fileSchema)
-      .where(eq(fileSchema.ownerId, ownerId));
+      .where(eq(fileSchema.ownerId, userId));
     return result[0]?.total ?? 0;
   },
 };
 
 export const MUTATIONS = {
-  createFile: async function (input: {
-    ownerId: string;
-    name: string;
-    size: number;
-    url: string;
-    parent: number;
-  }) {
+  createFile: async function (input: DB_FileType) {
     return await db.insert(fileSchema).values(input);
   },
 };
