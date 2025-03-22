@@ -35,7 +35,7 @@ export async function deleteFile(fileId: number) {
     .where(eq(files_table.id, fileId));
   console.log(dbDeleteResult);
 
-  revalidatePath(`/folder/${file.parent}`);
+  revalidatePath(`/drive/folder/${file.parent}`);
 
   return { success: true };
 }

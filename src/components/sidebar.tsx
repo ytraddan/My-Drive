@@ -13,17 +13,17 @@ import {
 } from "lucide-react";
 
 const mainNavItems = [
-  { Icon: HardDrive, label: "Drive", href: "/folder/1" },
-  { Icon: Clock, label: "Recent", href: "/recent" },
-  { Icon: Star, label: "Starred", href: "/starred" },
-  { Icon: Trash2, label: "Trash", href: "/trash" },
+  { Icon: HardDrive, label: "Drive", href: "drive/folder/1" },
+  { Icon: Clock, label: "Recent", href: "drive/recent" },
+  { Icon: Star, label: "Starred", href: "drive/starred" },
+  { Icon: Trash2, label: "Trash", href: "drive/trash" },
 ];
 
 const categoryItems = [
-  { Icon: ImageIcon, label: "Images", href: "/images" },
-  { Icon: FileText, label: "Documents", href: "/documents" },
-  { Icon: AudioLines, label: "Audio", href: "/audio" },
-  { Icon: Clapperboard, label: "Video", href: "/video" },
+  { Icon: ImageIcon, label: "Images", href: "drive/images" },
+  { Icon: FileText, label: "Documents", href: "drive/documents" },
+  { Icon: AudioLines, label: "Audio", href: "drive/audio" },
+  { Icon: Clapperboard, label: "Video", href: "drive/video" },
 ];
 
 const SidebarItem = ({ Icon, label, href }: (typeof categoryItems)[0]) => {

@@ -24,7 +24,7 @@ export default function Folder({ folder }: { folder: DB_FolderType }) {
   return (
     <Link
       className="flex cursor-pointer items-center space-x-3 rounded-lg border border-border p-3 hover:bg-muted/50"
-      href={`/folder/${folder.id}`}
+      href={`/drive/folder/${folder.id}`}
     >
       <FolderIcon className="h-9 w-9 text-blue-400" />
       <div className="min-w-0 flex-1">

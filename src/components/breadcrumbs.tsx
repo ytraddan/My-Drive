@@ -20,7 +20,7 @@ export default function Breadcrumbs({ parents }: { parents: DB_FolderType[] }) {
                 <span className="cursor-default">{item.name}</span>
               ) : (
                 <BreadcrumbLink
-                  href={`/folder/${item.id}`}
+                  href={`/drive/folder/${item.id}`}
                   className="cursor-pointer"
                 >
                   {item.name}

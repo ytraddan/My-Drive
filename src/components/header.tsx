@@ -9,7 +9,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-background px-6 py-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Link href="/">
+          <Link href="/drive">
             <h1 className="text-xl font-semibold">My Drive</h1>
           </Link>
           <div className="relative hidden md:block">
