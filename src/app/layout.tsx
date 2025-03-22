@@ -32,14 +32,16 @@ export default function RootLayout({
     >
       <html lang="en" className={`${GeistSans.variable}`}>
         <PostHogProvider>
-          <body className="dark flex min-h-screen flex-col bg-background text-foreground">
-            <Header />
-            <div className="flex flex-1 overflow-hidden">
-              <Sidebar />
-              <main className="flex-1 overflow-auto p-4">
-                <SignedOut />
-                <SignedIn>{children}</SignedIn>
-              </main>
+          <body className="dark min-h-screen bg-background text-foreground">
+            <div className="flex h-screen flex-col">
+              <Header />
+              <div className="flex flex-1 overflow-hidden">
+                <Sidebar />
+                <main className="flex-1 overflow-y-auto p-4">
+                  <SignedOut />
+                  <SignedIn>{children}</SignedIn>
+                </main>
+              </div>
             </div>
           </body>
         </PostHogProvider>
