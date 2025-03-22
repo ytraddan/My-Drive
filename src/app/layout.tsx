@@ -9,9 +9,7 @@ import "@/styles/globals.css";
 export const metadata: Metadata = {
   title: "My Drive",
   description: "Google drive clone",
-  icons: {
-    icon: "/favicon.svg",
-  },
+  icons: "/favicon.svg",
 };
 
 export default function RootLayout({

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 p-4">
+    <main className="flex min-h-screen flex-col items-center bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 p-4">
       <div className="mt-[25vh] space-y-6 text-center">
         <h1 className="text-7xl font-bold tracking-tight text-zinc-200">
           My Drive
@@ -28,7 +28,7 @@ export default function Home() {
           <Button
             type="submit"
             size="lg"
-            className="border border-zinc-500 bg-zinc-900/50 text-zinc-300 transition-all duration-200 hover:bg-zinc-800 hover:text-white"
+            className="border border-zinc-500 bg-zinc-950/40 py-6 text-lg text-zinc-300 transition-all duration-200 hover:bg-zinc-800 hover:text-white"
           >
             Get Started
           </Button>
