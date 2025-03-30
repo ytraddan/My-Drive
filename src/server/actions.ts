@@ -1,11 +1,12 @@
 "use server";
 
+import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
+import { UTApi } from "uploadthing/server";
+import { redirect } from "next/navigation";
+import { files_table } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { db } from "./db";
-import { files_table } from "./db/schema";
-import { auth } from "@clerk/nextjs/server";
-import { UTApi } from "uploadthing/server";
-import { revalidatePath } from "next/cache";
 
 const utApi = new UTApi();
 
@@ -38,4 +39,14 @@ export async function deleteFile(fileId: number) {
   revalidatePath(`/drive/folder/${file.parent}`);
 
   return { success: true };
+}
+
+export async function handleGetStarted() {
+  const session = await auth();
+
+  if (!session.userId) {
+    redirect("/sign-in");
+  }
+
+  redirect("/drive");
 }
